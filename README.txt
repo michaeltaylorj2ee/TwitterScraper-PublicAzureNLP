@@ -12,7 +12,7 @@ The bot has been constructed with multiple different technologies.
 
 The stack consists of 4 major parts:
 -The Python Twitter extraction script
--IBM watson sentiment analysis
+-Azure Text Analytics
 -Microsoft Azure Image Vision
 -UiPath Robots
 
@@ -35,3 +35,7 @@ After installing the twitterscraper tool, Open the Main file and run it in UiPat
 Fill out the required fields in the Form and let the bot run.
 
 Note: The twitter scraper can take a long time if there are a lot of tweet for a selected date range. For a demo, use just a few days worth of tweets.
+
+Add keys to the following variables:
+ocpAPIMSubscriptionKey - In Main file - Used for Text Analytics
+azureVisionKey - In Download Pictures XAML - Used to get description for Images
