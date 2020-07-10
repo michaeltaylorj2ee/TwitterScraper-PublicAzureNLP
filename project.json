@@ -1,0 +1,43 @@
+{
+  "name": "TwitterScraper",
+  "description": "Blank Process",
+  "main": "Main.xaml",
+  "dependencies": {
+    "Microsoft.Activities.Extensions": "[2.0.6.9]",
+    "UiPath.Cognitive.Activities": "[2.2.4]",
+    "UiPath.Excel.Activities": "[2.7.2]",
+    "UiPath.Form.Activities": "[1.0.0]",
+    "UiPath.Mail.Activities": "[1.7.2]",
+    "UiPath.MicrosoftVision.Activities": "[2.2.0]",
+    "UiPath.System.Activities": "[19.10.1]",
+    "UiPath.UIAutomation.Activities": "[19.11.0]",
+    "UiPath.WebAPI.Activities": "[1.4.4]",
+    "UiPathTeam.JSONUtilities.Activities": "[0.5.5]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "19.13.0.10",
+  "projectVersion": "1.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "fileInfoCollection": []
+  },
+  "expressionLanguage": "VisualBasic"
+}
