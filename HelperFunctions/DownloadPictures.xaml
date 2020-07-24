@@ -3,11 +3,14 @@
     <x:Property Name="jsonArray" Type="InArgument(njl:JArray)" />
     <x:Property Name="username" Type="InArgument(x:String)" />
     <x:Property Name="dictionary_Out" Type="OutArgument(scg:IDictionary(x:String, x:String))" />
+    <x:Property Name="defaultSaveLocation" Type="InArgument(x:String)" />
+    <x:Property Name="IN_azureVisionURL" Type="InArgument(x:String)" />
+    <x:Property Name="IN_azureVisionKey" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1417,2637</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1417,2677</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DownloadPictures_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="25">
@@ -65,11 +68,6 @@
   <Sequence DisplayName="DownloadPictures" sap:VirtualizedContainerService.HintSize="1427,2472" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IDictionary(x:String, x:String)" Name="dictionaryVar" />
-      <Variable x:TypeArguments="x:String" Name="azureVisionKey">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">af908d7b2e1e43a087b1f9c69315****</Literal>
-        </Variable.Default>
-      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -127,7 +125,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="661,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[item.Item(&quot;img_urls&quot;).First.ToString]" />
-                            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" DisplayName="HTTP Request" EndPoint="[item.Item(&quot;img_urls&quot;).First.ToString]" sap:VirtualizedContainerService.HintSize="661,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResourcePath="[&quot;C:\Temp\Tweets\&quot;+username+&quot;\&quot;+item.Item(&quot;tweet_id&quot;).ToString+&quot;_&quot;+now.ToString(&quot;ddMMyyhhmmssfff&quot;).ToString+&quot;.jpg&quot;]" TimeoutMS="6000">
+                            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" DisplayName="HTTP Request" EndPoint="[item.Item(&quot;img_urls&quot;).First.ToString]" sap:VirtualizedContainerService.HintSize="661,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResourcePath="[defaultSaveLocation+username+&quot;\&quot;+item.Item(&quot;tweet_id&quot;).ToString+&quot;_&quot;+now.ToString(&quot;ddMMyyhhmmssfff&quot;).ToString+&quot;.jpg&quot;]" TimeoutMS="6000">
                               <ui:HttpClient.Attachments>
                                 <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                               </ui:HttpClient.Attachments>
@@ -144,7 +142,7 @@
                                 <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                               </ui:HttpClient.UrlSegments>
                             </ui:HttpClient>
-                            <uma:MicrosoftVisionScope DisplayName="Microsoft Vision Scope" sap:VirtualizedContainerService.HintSize="661,809" sap2010:WorkflowViewState.IdRef="MicrosoftVisionScope_1" ServiceURL="https://westeurope.api.cognitive.microsoft.com/" SubscriptionKey="[azureVisionKey]">
+                            <uma:MicrosoftVisionScope DisplayName="Microsoft Vision Scope" sap:VirtualizedContainerService.HintSize="661,809" sap2010:WorkflowViewState.IdRef="MicrosoftVisionScope_1" ServiceURL="[IN_azureVisionURL]" SubscriptionKey="[IN_azureVisionKey]">
                               <uma:MicrosoftVisionScope.Body>
                                 <ActivityAction x:TypeArguments="um:MicrosoftVisionApplication">
                                   <ActivityAction.Argument>

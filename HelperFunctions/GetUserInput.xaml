@@ -1,0 +1,160 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GetUserInput" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="formFieldJsonObject" Type="InOutArgument(njl:JObject)" />
+    <x:Property Name="emailAddressTo" Type="OutArgument(x:String)" />
+    <x:Property Name="username" Type="OutArgument(x:String)" />
+    <x:Property Name="keywords" Type="OutArgument(x:String)" />
+    <x:Property Name="startingDateRange" Type="OutArgument(x:String)" />
+    <x:Property Name="endingDateRange" Type="OutArgument(x:String)" />
+    <x:Property Name="wordsToMonitorSplitArray" Type="OutArgument(s:String[])" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>813,191</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Management.Automation</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftVision</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Cognitive</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Get User Input" sap:VirtualizedContainerService.HintSize="823,66" sap2010:WorkflowViewState.IdRef="Sequence_13">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="wordsToMonitor" />
+      <Variable x:TypeArguments="x:String" Name="formFields" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ufa:FormActivity Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormTitle="{x:Null}" SelectedButton="{x:Null}" DisplayName="Create Form" FormFieldsOutputData="[formFields]" FormHeight="827" FormSchema="%[{&quot;label&quot;:&quot;Search Mode:&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;description&quot;:&quot;&quot;,&quot;inline&quot;:false,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:false,&quot;defaultValue&quot;:null,&quot;values&quot;:[{&quot;label&quot;:&quot;Username&quot;,&quot;value&quot;:&quot;username&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Keywords&quot;,&quot;value&quot;:&quot;keywords&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;required&quot;:false,&quot;customMessage&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;searchMode&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;radio&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:null,&quot;attributes&quot;:{},&quot;validateOn&quot;:&quot;change&quot;,&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;inputType&quot;:&quot;radio&quot;,&quot;fieldSet&quot;:false,&quot;id&quot;:&quot;epe3d3j&quot;},{&quot;label&quot;:&quot;Twitter Username&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;description&quot;:&quot;Enter Twitter Username to scrape tweets.&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;inputMask&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true,&quot;defaultValue&quot;:null,&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;pattern&quot;:&quot;&quot;,&quot;customMessage&quot;:&quot;&quot;,&quot;minLength&quot;:&quot;&quot;,&quot;maxLength&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;twitterUsername&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;searchMode&quot;,&quot;eq&quot;:&quot;username&quot;},&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;customClass&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;mask&quot;:false,&quot;inputType&quot;:&quot;text&quot;,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;id&quot;:&quot;ezrgznw&quot;},{&quot;label&quot;:&quot;Keywords to search Twitter&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;description&quot;:&quot;Using this field will return results containing these keywords. You can use any advanced query Twitter supports. (ie Tesla AND Ford, Tesla OR Ford, etc.) https://twitter.com/search-advanced?lang=en&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;inputMask&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true,&quot;defaultValue&quot;:null,&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;pattern&quot;:&quot;&quot;,&quot;customMessage&quot;:&quot;&quot;,&quot;minLength&quot;:&quot;&quot;,&quot;maxLength&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;keywordsToSearchTwitter&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;searchMode&quot;,&quot;eq&quot;:&quot;keywords&quot;},&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;customClass&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;mask&quot;:false,&quot;inputType&quot;:&quot;text&quot;,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;id&quot;:&quot;eabsa1n&quot;},{&quot;label&quot;:&quot;Search terms to flag&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;description&quot;:&quot;This field will set a flag in the spreadsheet if the tweet contains any of the words specified. (Comma separated values)&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;inputMask&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true,&quot;defaultValue&quot;:null,&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;pattern&quot;:&quot;&quot;,&quot;customMessage&quot;:&quot;&quot;,&quot;minLength&quot;:&quot;&quot;,&quot;maxLength&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;searchTermsToFlag&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;customClass&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;mask&quot;:false,&quot;inputType&quot;:&quot;text&quot;,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;id&quot;:&quot;ews0jkd&quot;},{&quot;label&quot;:&quot;Limit Search By Date Range&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;description&quot;:&quot;&quot;,&quot;inline&quot;:false,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:false,&quot;defaultValue&quot;:null,&quot;values&quot;:[{&quot;label&quot;:&quot;Yes&quot;,&quot;value&quot;:&quot;yes&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;No&quot;,&quot;value&quot;:&quot;no&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;required&quot;:false,&quot;customMessage&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;limitSearchByDateRange&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;radio&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:null,&quot;attributes&quot;:{},&quot;validateOn&quot;:&quot;change&quot;,&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;inputType&quot;:&quot;radio&quot;,&quot;fieldSet&quot;:false,&quot;id&quot;:&quot;e7cm0zf&quot;},{&quot;label&quot;:&quot;Starting Date of Twitter Search&quot;,&quot;hideInputLabels&quot;:false,&quot;inputsLabelPosition&quot;:&quot;top&quot;,&quot;description&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:false,&quot;fields&quot;:{&quot;day&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;month&quot;:{&quot;type&quot;:&quot;select&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;year&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false,&quot;minYear&quot;:2006}},&quot;dayFirst&quot;:false,&quot;validateOn&quot;:&quot;change&quot;,&quot;maxDate&quot;:&quot;&quot;,&quot;minDate&quot;:&quot;&quot;,&quot;errorLabel&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;required&quot;:false,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;key&quot;:&quot;startingDateOfTwitterSearch&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;limitSearchByDateRange&quot;,&quot;eq&quot;:&quot;yes&quot;},&quot;type&quot;:&quot;day&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;defaultValue&quot;:null,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:null,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;id&quot;:&quot;e0ly8b9&quot;},{&quot;label&quot;:&quot;Ending Date of Twitter Search&quot;,&quot;hideInputLabels&quot;:false,&quot;inputsLabelPosition&quot;:&quot;top&quot;,&quot;description&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:false,&quot;fields&quot;:{&quot;day&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;month&quot;:{&quot;type&quot;:&quot;select&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;year&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false,&quot;minYear&quot;:2006}},&quot;dayFirst&quot;:false,&quot;validateOn&quot;:&quot;change&quot;,&quot;maxDate&quot;:&quot;&quot;,&quot;minDate&quot;:&quot;&quot;,&quot;errorLabel&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;required&quot;:false,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;key&quot;:&quot;endingDateOfTwitterSearch&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;limitSearchByDateRange&quot;,&quot;eq&quot;:&quot;yes&quot;},&quot;type&quot;:&quot;day&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;defaultValue&quot;:null,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:null,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;id&quot;:&quot;e9mpcye&quot;},{&quot;label&quot;:&quot;Email report to:&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;inputMask&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true,&quot;defaultValue&quot;:null,&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;pattern&quot;:&quot;&quot;,&quot;customMessage&quot;:&quot;&quot;,&quot;minLength&quot;:&quot;&quot;,&quot;maxLength&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;emailReportTo&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;customClass&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;mask&quot;:false,&quot;inputType&quot;:&quot;text&quot;,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;id&quot;:&quot;e1t35oq&quot;},{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;size&quot;:&quot;md&quot;,&quot;block&quot;:false,&quot;action&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;theme&quot;:&quot;primary&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;defaultValue&quot;:null,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:false,&quot;hidden&quot;:false,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tableView&quot;:false,&quot;labelPosition&quot;:&quot;top&quot;,&quot;description&quot;:&quot;&quot;,&quot;errorLabel&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;hideLabel&quot;:false,&quot;tabindex&quot;:&quot;&quot;,&quot;disabled&quot;:false,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;attributes&quot;:{},&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;leftIcon&quot;:&quot;&quot;,&quot;rightIcon&quot;:&quot;&quot;,&quot;dataGridLabel&quot;:true,&quot;id&quot;:&quot;e5gp5ic&quot;}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormWidth="932" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="569,76" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False">
+      <ufa:FormActivity.FormFieldsCollection>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ufa:FormActivity.FormFieldsCollection>
+    </ufa:FormActivity>
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="569,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[formFieldJsonObject]" JsonString="[formFields]" />
+    <Assign sap:VirtualizedContainerService.HintSize="569,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[wordsToMonitor]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[formFieldJsonObject.Item("searchTermsToFlag").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="569,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[emailAddressTo]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[formFieldJsonObject.Item("emailReportTo").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[formFieldJsonObject.Item(&quot;searchMode&quot;).ToString.Contains(&quot;username&quot;)]" sap:VirtualizedContainerService.HintSize="569,208" sap2010:WorkflowViewState.IdRef="If_9">
+      <If.Then>
+        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[username]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[formFieldJsonObject.Item("twitterUsername").ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+      <If.Else>
+        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[keywords]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[formFieldJsonObject.Item("keywordsToSearchTwitter").ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Else>
+    </If>
+    <If Condition="[formFieldJsonObject.Item(&quot;limitSearchByDateRange&quot;).ToString.Contains(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="569,400" sap2010:WorkflowViewState.IdRef="If_6">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_24">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[startingDateRange]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(formFieldJsonObject.Item("startingDateOfTwitterSearch").ToString,"MM/dd/yyyy",System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[endingDateRange]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(formFieldJsonObject.Item("endingDateOfTwitterSearch").ToString,"MM/dd/yyyy",System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd")]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Then>
+    </If>
+    <If Condition="[String.IsNullOrEmpty(wordsToMonitor)]" sap:VirtualizedContainerService.HintSize="569,208" sap2010:WorkflowViewState.IdRef="If_4">
+      <If.Else>
+        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign.To>
+            <OutArgument x:TypeArguments="s:String[]">[wordsToMonitorSplitArray]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="s:String[]">[wordsToMonitor.Split(","c)]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1072,7666" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1461,2838" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
       <x:String>System.Activities</x:String>
@@ -62,7 +62,7 @@
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="865,7501" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="526,2673" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="username" />
       <Variable x:TypeArguments="x:String" Name="jsonFile" />
@@ -74,200 +74,103 @@
       <Variable x:TypeArguments="x:String" Name="startingDateRange" />
       <Variable x:TypeArguments="x:String" Name="endingDateRange" />
       <Variable x:TypeArguments="x:String" Name="emailAddressTo" />
-      <Variable x:TypeArguments="x:String" Name="ocpAPIMSubscriptionKey">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">3237f074b4d94390a075b1bd3c******</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="3237f074b4d94390a075b1bd3c624dee" Name="azureTextAnalyticsKey" />
+      <Variable x:TypeArguments="x:String" Name="keywords" />
+      <Variable x:TypeArguments="x:String" Name="defaultSaveLocation" />
+      <Variable x:TypeArguments="x:String" Name="azureComputerVisionKey" />
+      <Variable x:TypeArguments="x:String" Name="azureTextAnalyticsURL" />
+      <Variable x:TypeArguments="x:String" Name="azureComputerVisionURL" />
+      <Variable x:TypeArguments="sd:DataTable" Name="config" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="823,438" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Prereq: https://github.com/taspinar/twitterscraper&#xA;&#xA;// Install python (Ensure python is included in system path)&#xA;&#xA;// then run this command&#xA;&#xA;// pip install twitterscraper&#xA;&#xA;// ocpAPIMSubscriptionKey is the key used to connect to Azure Cognitive Text Analytics&#xA;&#xA;// Documentation for text analytics https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment&#xD;&#xA;&#xD;&#xA;// Download Pictures Method also needs key for Microsoft vision to generate description for images" />
-    <Sequence DisplayName="Input" sap:VirtualizedContainerService.HintSize="823,66" sap2010:WorkflowViewState.IdRef="Sequence_13">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="x:String" Name="wordsToMonitor" />
-        <Variable x:TypeArguments="x:String" Name="formFields" />
-      </Sequence.Variables>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ufa:FormActivity Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormHeight="{x:Null}" FormTitle="{x:Null}" FormWidth="{x:Null}" SelectedButton="{x:Null}" DisplayName="Create Form" FormFieldsOutputData="[formFields]" FormSchema="%[{&quot;label&quot;:&quot;Twitter Username&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;description&quot;:&quot;Enter Twitter Username to scrape tweets.&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;inputMask&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true,&quot;defaultValue&quot;:null,&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;pattern&quot;:&quot;&quot;,&quot;customMessage&quot;:&quot;&quot;,&quot;minLength&quot;:&quot;&quot;,&quot;maxLength&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;twitterUsername&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;customClass&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;mask&quot;:false,&quot;inputType&quot;:&quot;text&quot;,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;id&quot;:&quot;ehbq537&quot;},{&quot;label&quot;:&quot;Search terms to flag&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;description&quot;:&quot;This field will set a flag in the spreadsheet if the tweet contains any of the words specified. (Comma separated values)&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;inputMask&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true,&quot;defaultValue&quot;:null,&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;pattern&quot;:&quot;&quot;,&quot;customMessage&quot;:&quot;&quot;,&quot;minLength&quot;:&quot;&quot;,&quot;maxLength&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;searchTermsToFlag&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;customClass&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;mask&quot;:false,&quot;inputType&quot;:&quot;text&quot;,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;id&quot;:&quot;erdfsra&quot;},{&quot;label&quot;:&quot;Limit Search By Date Range&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;description&quot;:&quot;&quot;,&quot;inline&quot;:false,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:false,&quot;defaultValue&quot;:null,&quot;values&quot;:[{&quot;label&quot;:&quot;Yes&quot;,&quot;value&quot;:&quot;yes&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;No&quot;,&quot;value&quot;:&quot;no&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;validate&quot;:{&quot;required&quot;:false,&quot;customMessage&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;limitSearchByDateRange&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;radio&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:null,&quot;attributes&quot;:{},&quot;validateOn&quot;:&quot;change&quot;,&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;inputType&quot;:&quot;radio&quot;,&quot;fieldSet&quot;:false,&quot;id&quot;:&quot;eur0pt4&quot;},{&quot;label&quot;:&quot;Starting Date of Twitter Search&quot;,&quot;hideInputLabels&quot;:false,&quot;inputsLabelPosition&quot;:&quot;top&quot;,&quot;description&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:false,&quot;fields&quot;:{&quot;day&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;month&quot;:{&quot;type&quot;:&quot;select&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;year&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false,&quot;minYear&quot;:2006}},&quot;dayFirst&quot;:false,&quot;validateOn&quot;:&quot;change&quot;,&quot;maxDate&quot;:&quot;&quot;,&quot;minDate&quot;:&quot;&quot;,&quot;errorLabel&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;required&quot;:false,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;key&quot;:&quot;startingDateOfTwitterSearch&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;limitSearchByDateRange&quot;,&quot;eq&quot;:&quot;yes&quot;},&quot;type&quot;:&quot;day&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;defaultValue&quot;:null,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:null,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;id&quot;:&quot;eo0f3z&quot;},{&quot;label&quot;:&quot;Ending Date of Twitter Search&quot;,&quot;hideInputLabels&quot;:false,&quot;inputsLabelPosition&quot;:&quot;top&quot;,&quot;description&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:false,&quot;fields&quot;:{&quot;day&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;month&quot;:{&quot;type&quot;:&quot;select&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false},&quot;year&quot;:{&quot;type&quot;:&quot;number&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;hide&quot;:false,&quot;required&quot;:false,&quot;minYear&quot;:2006}},&quot;dayFirst&quot;:false,&quot;validateOn&quot;:&quot;change&quot;,&quot;maxDate&quot;:&quot;&quot;,&quot;minDate&quot;:&quot;&quot;,&quot;errorLabel&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;required&quot;:false,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;key&quot;:&quot;endingDateOfTwitterSearch&quot;,&quot;conditional&quot;:{&quot;show&quot;:true,&quot;when&quot;:&quot;limitSearchByDateRange&quot;,&quot;eq&quot;:&quot;yes&quot;},&quot;type&quot;:&quot;day&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;defaultValue&quot;:null,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:null,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;id&quot;:&quot;e9xtifs&quot;},{&quot;label&quot;:&quot;Email report to:&quot;,&quot;labelPosition&quot;:&quot;top&quot;,&quot;placeholder&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;inputMask&quot;:&quot;&quot;,&quot;hidden&quot;:false,&quot;hideLabel&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;disabled&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true,&quot;defaultValue&quot;:null,&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;pattern&quot;:&quot;&quot;,&quot;customMessage&quot;:&quot;&quot;,&quot;minLength&quot;:&quot;&quot;,&quot;maxLength&quot;:&quot;&quot;,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;errorLabel&quot;:&quot;&quot;,&quot;key&quot;:&quot;emailReportTo&quot;,&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;customClass&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:true,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;tabindex&quot;:&quot;&quot;,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;attributes&quot;:{},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;mask&quot;:false,&quot;inputType&quot;:&quot;text&quot;,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;id&quot;:&quot;ez7vzho&quot;},{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;size&quot;:&quot;md&quot;,&quot;block&quot;:false,&quot;action&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;theme&quot;:&quot;primary&quot;,&quot;input&quot;:true,&quot;placeholder&quot;:&quot;&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;customClass&quot;:&quot;&quot;,&quot;suffix&quot;:&quot;&quot;,&quot;multiple&quot;:false,&quot;defaultValue&quot;:null,&quot;protected&quot;:false,&quot;unique&quot;:false,&quot;persistent&quot;:false,&quot;hidden&quot;:false,&quot;clearOnHide&quot;:true,&quot;refreshOn&quot;:&quot;&quot;,&quot;redrawOn&quot;:&quot;&quot;,&quot;tableView&quot;:false,&quot;labelPosition&quot;:&quot;top&quot;,&quot;description&quot;:&quot;&quot;,&quot;errorLabel&quot;:&quot;&quot;,&quot;tooltip&quot;:&quot;&quot;,&quot;hideLabel&quot;:false,&quot;tabindex&quot;:&quot;&quot;,&quot;disabled&quot;:false,&quot;autofocus&quot;:false,&quot;dbIndex&quot;:false,&quot;customDefaultValue&quot;:&quot;&quot;,&quot;calculateValue&quot;:&quot;&quot;,&quot;widget&quot;:{&quot;type&quot;:&quot;input&quot;},&quot;attributes&quot;:{},&quot;validateOn&quot;:&quot;change&quot;,&quot;validate&quot;:{&quot;required&quot;:false,&quot;custom&quot;:&quot;&quot;,&quot;customPrivate&quot;:false,&quot;strictDateValidation&quot;:false},&quot;conditional&quot;:{&quot;show&quot;:null,&quot;when&quot;:null,&quot;eq&quot;:&quot;&quot;},&quot;overlay&quot;:{&quot;style&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;top&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;allowCalculateOverride&quot;:false,&quot;encrypted&quot;:false,&quot;alwaysEnabled&quot;:false,&quot;showCharCount&quot;:false,&quot;showWordCount&quot;:false,&quot;properties&quot;:{},&quot;allowMultipleMasks&quot;:false,&quot;leftIcon&quot;:&quot;&quot;,&quot;rightIcon&quot;:&quot;&quot;,&quot;dataGridLabel&quot;:true,&quot;id&quot;:&quot;ekhkx8&quot;}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="484,76" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False">
-        <ufa:FormActivity.FormFieldsCollection>
-          <scg:Dictionary x:TypeArguments="x:String, Argument" />
-        </ufa:FormActivity.FormFieldsCollection>
-      </ufa:FormActivity>
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[formFieldJsonObject]" JsonString="[formFields]" />
-      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_13">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[username]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[formFieldJsonObject.Item("twitterUsername").ToString]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_14">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[wordsToMonitor]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[formFieldJsonObject.Item("searchTermsToFlag").ToString]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_17">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[emailAddressTo]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[formFieldJsonObject.Item("emailReportTo").ToString]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <If Condition="[formFieldJsonObject.Item(&quot;limitSearchByDateRange&quot;).ToString.Contains(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="484,400" sap2010:WorkflowViewState.IdRef="If_6">
-        <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_24">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_15">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[startingDateRange]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(formFieldJsonObject.Item("startingDateOfTwitterSearch").ToString,"MM/dd/yyyy",System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd")]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_16">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[endingDateRange]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(formFieldJsonObject.Item("endingDateOfTwitterSearch").ToString,"MM/dd/yyyy",System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd")]</InArgument>
-              </Assign.Value>
-            </Assign>
-          </Sequence>
-        </If.Then>
-      </If>
-      <If Condition="[String.IsNullOrEmpty(wordsToMonitor)]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_4">
-        <If.Else>
-          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
-            <Assign.To>
-              <OutArgument x:TypeArguments="s:String[]">[wordsToMonitorSplitArray]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="s:String[]">[wordsToMonitor.Split(","c)]</InArgument>
-            </Assign.Value>
-          </Assign>
-        </If.Else>
-      </If>
-    </Sequence>
-    <Sequence DisplayName="Twitter Scrape" sap:VirtualizedContainerService.HintSize="823,1566" sap2010:WorkflowViewState.IdRef="Sequence_14">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="x:Boolean" Name="pathExists" />
-      </Sequence.Variables>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="484,515" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Prereq: https://github.com/taspinar/twitterscraper&#xA;&#xA;// Install python (Ensure python is included in system path)&#xD;&#xA;&#xD;&#xA;// You may need to change your query.py file for the Twitter Scraper to work.&#xD;&#xA;&#xD;&#xA;//https://github.com/taspinar/twitterscraper/issues/296#issuecomment-637637929&#xA;&#xA;// then run this command&#xA;&#xA;// pip install twitterscraper&#xA;&#xA;// Edit Config.csv file to setup your Azure Computer Vision URL / Key, Azure Text Analytics URL/Key, and Default File Save Location&#xA;&#xA;// Documentation for text analytics https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
+    <Sequence DisplayName="Read Config File" sap:VirtualizedContainerService.HintSize="484,506" sap2010:WorkflowViewState.IdRef="Sequence_35">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="713,116" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="r" KeyModifiers="Win">
-        <ui:SendHotkey.Target>
-          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
-            <ui:Target.TimeoutMS>
-              <InArgument x:TypeArguments="x:Int32" />
-            </ui:Target.TimeoutMS>
-            <ui:Target.WaitForReady>
-              <InArgument x:TypeArguments="ui:WaitForReady" />
-            </ui:Target.WaitForReady>
-          </ui:Target>
-        </ui:SendHotkey.Target>
-      </ui:SendHotkey>
-      <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="713,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="cmd[k(enter)]">
-        <ui:TypeInto.Target>
-          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="66211aeb059fd1b0d14d9d31f83480e6" Selector="&lt;wnd app='explorer.exe' cls='#32770' title='Run' /&gt;&lt;wnd ctrlid='12298' /&gt;&lt;wnd ctrlid='1001' /&gt;">
-            <ui:Target.TimeoutMS>
-              <InArgument x:TypeArguments="x:Int32" />
-            </ui:Target.TimeoutMS>
-            <ui:Target.WaitForReady>
-              <InArgument x:TypeArguments="ui:WaitForReady" />
-            </ui:Target.WaitForReady>
-          </ui:Target>
-        </ui:TypeInto.Target>
-      </ui:TypeInto>
-      <ui:CreateDirectory ContinueOnError="True" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="713,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="C:\Temp\Tweets" />
-      <ui:CreateDirectory ContinueOnError="True" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="713,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[&quot;C:\Temp\Tweets\&quot;+username]" />
-      <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into" sap:VirtualizedContainerService.HintSize="713,96" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="cd C:\Temp\Tweets[k(enter)]">
-        <ui:TypeInto.Target>
-          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
-            <ui:Target.TimeoutMS>
-              <InArgument x:TypeArguments="x:Int32" />
-            </ui:Target.TimeoutMS>
-            <ui:Target.WaitForReady>
-              <InArgument x:TypeArguments="ui:WaitForReady" />
-            </ui:Target.WaitForReady>
-          </ui:Target>
-        </ui:TypeInto.Target>
-      </ui:TypeInto>
-      <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_10">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[jsonFile]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[username.ToString+new Random().Next(1,1000).ToString]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <If Condition="[formFieldJsonObject.Item(&quot;limitSearchByDateRange&quot;).ToString.Contains(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="713,244" sap2010:WorkflowViewState.IdRef="If_7">
-        <If.Then>
-          <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" DisplayName="Type Into" sap:VirtualizedContainerService.HintSize="334,96" sap2010:WorkflowViewState.IdRef="TypeInto_4" SendWindowMessages="True" SimulateType="False" Text="[&quot;twitterscraper from:&quot;+ username+&quot; -bd &quot;+startingDateRange+&quot; -ed &quot;+endingDateRange+&quot; --output=&quot;+jsonFile+&quot;.json&quot;+ &quot;[k(enter)]&quot;]">
-            <ui:TypeInto.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
-                <ui:Target.WaitForReady>
-                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                </ui:Target.WaitForReady>
-              </ui:Target>
-            </ui:TypeInto.Target>
-          </ui:TypeInto>
-        </If.Then>
-        <If.Else>
-          <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" DisplayName="Type Into" sap:VirtualizedContainerService.HintSize="334,96" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="True" SimulateType="False" Text="[&quot;twitterscraper from:&quot;+ username+ &quot; --output=&quot;+jsonFile+&quot;.json&quot;+ &quot;[k(enter)]&quot;]">
-            <ui:TypeInto.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
-                <ui:Target.WaitForReady>
-                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                </ui:Target.WaitForReady>
-              </ui:Target>
-            </ui:TypeInto.Target>
-          </ui:TypeInto>
-        </If.Else>
-      </If>
-      <ui:PathExists DisplayName="Path Exists" Exists="[pathExists]" sap:VirtualizedContainerService.HintSize="713,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[&quot;C:\Temp\Tweets\&quot;+jsonFile.ToString+&quot;.json&quot;]" PathType="File" />
-      <While sap:VirtualizedContainerService.HintSize="713,247" sap2010:WorkflowViewState.IdRef="While_1">
-        <While.Condition>
-          <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="pathExists = False" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
-        </While.Condition>
-        <ui:PathExists DisplayName="Path Exists" Exists="[pathExists]" sap:VirtualizedContainerService.HintSize="334,89" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[&quot;C:\Temp\Tweets\&quot;+jsonFile.ToString+&quot;.json&quot;]" PathType="File" />
-      </While>
+      <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[config]" Delimitator="Comma" DisplayName="Read CSV" FilePath="Config.csv" sap:VirtualizedContainerService.HintSize="338,152" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
+      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,222" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+        <ui:MultipleAssign.AssignOperations>
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[azureComputerVisionURL]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[config.Rows(0).Item("Value").ToString]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[azureTextAnalyticsURL]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[config.Rows(2).Item("Value").ToString]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[defaultSaveLocation]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[config.Rows(4).Item("Value").ToString]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[azureTextAnalyticsKey]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[config.Rows(3).Item("Value").ToString]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[azureComputerVisionKey]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[config.Rows(1).Item("Value").ToString]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+          </scg:List>
+        </ui:MultipleAssign.AssignOperations>
+      </ui:MultipleAssign>
     </Sequence>
-    <Sequence DisplayName="Deserialize JSON and Save to CSV" sap:VirtualizedContainerService.HintSize="823,1117" sap2010:WorkflowViewState.IdRef="Sequence_15">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetUserInput workflow" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="HelperFunctions/GetUserInput.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="njl:JObject" x:Key="formFieldJsonObject">[formFieldJsonObject]</InOutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="emailAddressTo">[emailAddressTo]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="username">[username]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="keywords">[keywords]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="startingDateRange">[startingDateRange]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="endingDateRange">[endingDateRange]</OutArgument>
+        <OutArgument x:TypeArguments="s:String[]" x:Key="wordsToMonitorSplitArray">[wordsToMonitorSplitArray]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke TwitterScrape workflow" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="HelperFunctions/TwitterScrape.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="username">[username]</InArgument>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="formFieldJsonObject">[formFieldJsonObject]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="jsonFile">[jsonFile]</InOutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="keywords">[keywords]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="startingDateRange">[startingDateRange]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="endingDateRange">[endingDateRange]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="resultsSaveLocation">[defaultSaveLocation]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Sequence DisplayName="Deserialize JSON and Save to CSV" sap:VirtualizedContainerService.HintSize="484,66" sap2010:WorkflowViewState.IdRef="Sequence_15">
       <Sequence.Variables>
         <Variable x:TypeArguments="njl:JArray" Name="jsonArray" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -307,21 +210,24 @@
           <InArgument x:TypeArguments="scg:IDictionary(x:String, x:String)">[New Dictionary(of String, String)]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke DownloadPictures workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DownloadPictures.xaml">
+      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke DownloadPictures workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="HelperFunctions/DownloadPictures.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="njl:JArray" x:Key="jsonArray">[jsonArray]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="username">[username]</InArgument>
           <OutArgument x:TypeArguments="scg:IDictionary(x:String, x:String)" x:Key="dictionary_Out">[imageDescriptionDictionary]</OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="defaultSaveLocation">[defaultSaveLocation]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="IN_azureVisionURL">[azureComputerVisionURL]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="IN_azureVisionKey">[azureComputerVisionKey]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[jsonDT]" DisplayName="For Each Tweet, Check Sentiment and Monitored Words" sap:VirtualizedContainerService.HintSize="823,3537" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[jsonDT]" DisplayName="For Each Tweet, Check Sentiment and Monitored Words" sap:VirtualizedContainerService.HintSize="484,595" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="773,3389" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="284,447" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:KeyValuePair(x:Double, x:String)" Name="sentiment" />
             </Sequence.Variables>
@@ -330,7 +236,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence sap:VirtualizedContainerService.HintSize="731,3297" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence sap:VirtualizedContainerService.HintSize="242,355" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="newError" />
                 <Variable x:TypeArguments="x:Boolean" Name="keyExists" />
@@ -344,28 +250,30 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Get Azure Sentiment" sap:VirtualizedContainerService.HintSize="689,1349" sap2010:WorkflowViewState.IdRef="Sequence_34">
+              <Sequence DisplayName="Get Azure Sentiment" sap:VirtualizedContainerService.HintSize="454,1349" sap2010:WorkflowViewState.IdRef="Sequence_34">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:Comment sap:VirtualizedContainerService.HintSize="412,112" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Split String workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Split String.xaml">
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Split String workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="HelperFunctions/Split String.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="string_IN">[row.Item("text").ToString]</InArgument>
                     <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="stringList_OUT">[splitString]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Build JSON Body workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Build JSON Body.xaml">
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Build JSON Body workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="HelperFunctions/Build JSON Body.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="scg:List(x:String)" x:Key="string_IN">[splitString]</InArgument>
                     <OutArgument x:TypeArguments="x:String" x:Key="JSON_OUT">[json]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" Body="[json]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EndPoint="https://westeurope.api.cognitive.microsoft.com/text/analytics/v3.0/sentiment" sap:VirtualizedContainerService.HintSize="412,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" Result="[result]" TimeoutMS="6000">
+                <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" Body="[json]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EndPoint="[azureTextAnalyticsURL]" sap:VirtualizedContainerService.HintSize="412,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" Result="[result]" TimeoutMS="6000">
                   <ui:HttpClient.Attachments>
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                   </ui:HttpClient.Attachments>
@@ -373,7 +281,7 @@
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                   </ui:HttpClient.Cookies>
                   <ui:HttpClient.Headers>
-                    <InArgument x:TypeArguments="x:String" x:Key="Ocp-Apim-Subscription-Key">[ocpAPIMSubscriptionKey]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Ocp-Apim-Subscription-Key">[azureTextAnalyticsKey]</InArgument>
                   </ui:HttpClient.Headers>
                   <ui:HttpClient.Parameters>
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
@@ -417,10 +325,10 @@
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:ForEach>
               </Sequence>
-              <Sequence DisplayName="Set Description of Image" sap:VirtualizedContainerService.HintSize="689,748" sap2010:WorkflowViewState.IdRef="Sequence_31">
+              <Sequence DisplayName="Set Description of Image" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_31">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -446,7 +354,7 @@
                   </If.Then>
                 </If>
               </Sequence>
-              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each word to monitor" sap:VirtualizedContainerService.HintSize="689,1028" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[wordsToMonitorSplitArray]">
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each word to monitor" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[wordsToMonitorSplitArray]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:String">
                     <ActivityAction.Argument>
@@ -536,7 +444,7 @@
                 </ui:ForEach.Body>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -552,7 +460,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[jsonDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[&quot;C:\Temp\Tweets\&quot;+jsonFile+ &quot;-Analysis.csv&quot;]" sap:VirtualizedContainerService.HintSize="823,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2">
+    <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[jsonDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[defaultSaveLocation+jsonFile+ &quot;-Analysis.csv&quot;]" sap:VirtualizedContainerService.HintSize="484,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -560,7 +468,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteCsvFile>
-    <If Condition="[String.IsNullOrWhiteSpace(emailAddressTo)]" DisplayName="Send email if specified" sap:VirtualizedContainerService.HintSize="823,293" sap2010:WorkflowViewState.IdRef="If_8">
+    <If Condition="[String.IsNullOrWhiteSpace(emailAddressTo)]" DisplayName="Send email if specified" sap:VirtualizedContainerService.HintSize="484,293" sap2010:WorkflowViewState.IdRef="If_8">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -571,7 +479,7 @@
         <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Request for investigation of &quot; + username + &quot;attached to this email&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;Request for investigation of &quot; + username]" To="[emailAddressTo]">
           <ui:SendOutlookMail.Files>
             <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-              <InArgument x:TypeArguments="x:String">["C:\Temp\Tweets\"+jsonFile+ "-Analysis.csv"]</InArgument>
+              <InArgument x:TypeArguments="x:String">[defaultSaveLocation+jsonFile+ "-Analysis.csv"]</InArgument>
             </scg:List>
           </ui:SendOutlookMail.Files>
         </ui:SendOutlookMail>

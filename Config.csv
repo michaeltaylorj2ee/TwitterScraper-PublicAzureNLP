@@ -1,0 +1,6 @@
+Field,Value
+"Azure Computer Vision URL	",https://westeurope.api.cognitive.microsoft.com/
+"Azure Computer Vision Key	",*****d7b2e1e43a087b1f9c693******
+"Azure Text Analytics URL	",https://westeurope.api.cognitive.microsoft.com/text/analytics/v3.0/sentiment
+"Azure Text Analytics Key	",******074b4d94390a075b1bd3c******
+"Results Save Location	",C:\Temp\Tweets\

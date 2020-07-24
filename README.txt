@@ -12,7 +12,7 @@ The bot has been constructed with multiple different technologies.
 
 The stack consists of 4 major parts:
 -The Python Twitter extraction script
--Azure Text Analytics
+-IBM watson sentiment analysis
 -Microsoft Azure Image Vision
 -UiPath Robots
 
@@ -32,10 +32,12 @@ pip install twitterscraper
 
 After installing the twitterscraper tool, Open the Main file and run it in UiPath. 
 
+You may need to change your query.py file for the Twitter Scraper to work. - https://github.com/taspinar/twitterscraper/issues/296#issuecomment-637637929
+
+Edit Config.csv file to setup your Azure Computer Vision URL / Key, Azure Text Analytics URL/Key, and Default File Save Location
+
+Documentation for text analytics https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment
+
 Fill out the required fields in the Form and let the bot run.
 
 Note: The twitter scraper can take a long time if there are a lot of tweet for a selected date range. For a demo, use just a few days worth of tweets.
-
-Add keys to the following variables:
-ocpAPIMSubscriptionKey - In Main file - Used for Text Analytics
-azureVisionKey - In Download Pictures XAML - Used to get description for Images
