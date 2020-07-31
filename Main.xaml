@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1461,2838" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1461,5154" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
       <x:String>System.Activities</x:String>
@@ -62,7 +62,7 @@
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="526,2673" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1010,4949" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="username" />
       <Variable x:TypeArguments="x:String" Name="jsonFile" />
@@ -87,8 +87,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="484,515" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Prereq: https://github.com/taspinar/twitterscraper&#xA;&#xA;// Install python (Ensure python is included in system path)&#xD;&#xA;&#xD;&#xA;// You may need to change your query.py file for the Twitter Scraper to work.&#xD;&#xA;&#xD;&#xA;//https://github.com/taspinar/twitterscraper/issues/296#issuecomment-637637929&#xA;&#xA;// then run this command&#xA;&#xA;// pip install twitterscraper&#xA;&#xA;// Edit Config.csv file to setup your Azure Computer Vision URL / Key, Azure Text Analytics URL/Key, and Default File Save Location&#xA;&#xA;// Documentation for text analytics https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
-    <Sequence DisplayName="Read Config File" sap:VirtualizedContainerService.HintSize="484,506" sap2010:WorkflowViewState.IdRef="Sequence_35">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="968,515" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Prereq: https://github.com/taspinar/twitterscraper&#xA;&#xA;// Install python (Ensure python is included in system path)&#xA;&#xA;// You may need to change your query.py file for the Twitter Scraper to work.&#xA;&#xA;//https://github.com/taspinar/twitterscraper/issues/296#issuecomment-637637929&#xA;&#xA;// then run this command&#xA;&#xA;// pip install twitterscraper&#xA;&#xA;// Edit Config.csv file to setup your Azure Computer Vision URL / Key, Azure Text Analytics URL/Key, and Default File Save Location&#xA;&#xA;// Documentation for text analytics https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
+    <Sequence DisplayName="Read Config File" sap:VirtualizedContainerService.HintSize="968,506" sap2010:WorkflowViewState.IdRef="Sequence_35">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -142,7 +142,7 @@
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
     </Sequence>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetUserInput workflow" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="HelperFunctions/GetUserInput.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetUserInput workflow" sap:VirtualizedContainerService.HintSize="968,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="HelperFunctions/GetUserInput.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InOutArgument x:TypeArguments="njl:JObject" x:Key="formFieldJsonObject">[formFieldJsonObject]</InOutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="emailAddressTo">[emailAddressTo]</OutArgument>
@@ -153,7 +153,7 @@
         <OutArgument x:TypeArguments="s:String[]" x:Key="wordsToMonitorSplitArray">[wordsToMonitorSplitArray]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke TwitterScrape workflow" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="HelperFunctions/TwitterScrape.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke TwitterScrape workflow" sap:VirtualizedContainerService.HintSize="968,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="HelperFunctions/TwitterScrape.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="username">[username]</InArgument>
         <InArgument x:TypeArguments="njl:JObject" x:Key="formFieldJsonObject">[formFieldJsonObject]</InArgument>
@@ -164,19 +164,27 @@
         <InArgument x:TypeArguments="x:String" x:Key="resultsSaveLocation">[defaultSaveLocation]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Sequence DisplayName="Deserialize JSON and Save to CSV" sap:VirtualizedContainerService.HintSize="484,66" sap2010:WorkflowViewState.IdRef="Sequence_15">
+    <Sequence DisplayName="Deserialize JSON and Save to CSV" sap:VirtualizedContainerService.HintSize="968,1217" sap2010:WorkflowViewState.IdRef="Sequence_15">
       <Sequence.Variables>
         <Variable x:TypeArguments="njl:JArray" Name="jsonArray" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Delay Duration="00:00:07" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
       <ui:DeserializeJson x:TypeArguments="sd:DataTable" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[jsonDT]" JsonString="[System.IO.File.ReadAllText(&quot;C:\Temp\Tweets\&quot;+jsonFile.ToString+&quot;.json&quot;)]" />
       <ui:DeserializeJsonArray DisplayName="Deserialize JSON Array" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_2" JsonArray="[jsonArray]" JsonString="[System.IO.File.ReadAllText(&quot;C:\Temp\Tweets\&quot;+jsonFile.ToString+&quot;.json&quot;)]" />
+      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sd:DataTable">[jsonDT]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sd:DataTable">[jsonDT.Asenumerable().Groupby(Function(a) a.Field(of string)("tweet_id").ToString).Select(Function(b) b.First()).Copytodatatable()]</InArgument>
+        </Assign.Value>
+      </Assign>
       <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[jsonDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[&quot;C:\Temp\Tweets\&quot;+jsonFile+ &quot;.csv&quot;]" sap:VirtualizedContainerService.HintSize="334,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" />
       <Sequence DisplayName="Add and Remove Columns" sap:VirtualizedContainerService.HintSize="334,344" sap2010:WorkflowViewState.IdRef="Sequence_19">
         <sap:WorkflowViewStateService.ViewState>
@@ -221,13 +229,13 @@
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[jsonDT]" DisplayName="For Each Tweet, Check Sentiment and Monitored Words" sap:VirtualizedContainerService.HintSize="484,595" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[jsonDT]" DisplayName="For Each Tweet, Check Sentiment and Monitored Words" sap:VirtualizedContainerService.HintSize="968,1720" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="284,447" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="918,1572" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:KeyValuePair(x:Double, x:String)" Name="sentiment" />
             </Sequence.Variables>
@@ -236,7 +244,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence sap:VirtualizedContainerService.HintSize="242,355" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence sap:VirtualizedContainerService.HintSize="876,1480" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="newError" />
                 <Variable x:TypeArguments="x:Boolean" Name="keyExists" />
@@ -253,7 +261,7 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Get Azure Sentiment" sap:VirtualizedContainerService.HintSize="454,1349" sap2010:WorkflowViewState.IdRef="Sequence_34">
+              <Sequence DisplayName="Get Azure Sentiment" sap:VirtualizedContainerService.HintSize="834,66" sap2010:WorkflowViewState.IdRef="Sequence_34">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -325,7 +333,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:ForEach>
               </Sequence>
-              <Sequence DisplayName="Set Description of Image" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_31">
+              <Sequence DisplayName="Set Description of Image" sap:VirtualizedContainerService.HintSize="834,66" sap2010:WorkflowViewState.IdRef="Sequence_31">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -354,101 +362,105 @@
                   </If.Then>
                 </If>
               </Sequence>
-              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each word to monitor" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[wordsToMonitorSplitArray]">
-                <ui:ForEach.Body>
-                  <ActivityAction x:TypeArguments="x:String">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="x:String" Name="item" />
-                    </ActivityAction.Argument>
-                    <Sequence DisplayName="For Each word to monitor Body" sap:VirtualizedContainerService.HintSize="653,894" sap2010:WorkflowViewState.IdRef="Sequence_16">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="x:Boolean" Name="containsWord" />
-                      </Sequence.Variables>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign sap:VirtualizedContainerService.HintSize="611,60" sap2010:WorkflowViewState.IdRef="Assign_8">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Boolean">[containsWord]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <If Condition="[row.Item(&quot;text&quot;).ToString.Contains(item.Trim) Or row.Item(&quot;Image Description&quot;).ToString.Contains(item.Trim)]" DisplayName="If contains word set true" sap:VirtualizedContainerService.HintSize="611,300" sap2010:WorkflowViewState.IdRef="If_2">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_4">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:Boolean">[containsWord]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                          </Sequence>
-                        </If.Then>
-                      </If>
-                      <If Condition="[containsWord]" DisplayName="If contains word set column" sap:VirtualizedContainerService.HintSize="611,362" sap2010:WorkflowViewState.IdRef="If_3">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="304,214" sap2010:WorkflowViewState.IdRef="Sequence_32">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_6">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:Object">[row.Item("Contains Monitored Word")]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:Object">["True"]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <ui:Break sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Break_1" />
-                          </Sequence>
-                        </If.Then>
-                        <If.Else>
-                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <If Condition="[wordsToMonitorSplitArray.Count &gt; 0]" DisplayName="Search for word, if words provided" sap:VirtualizedContainerService.HintSize="834,1176" sap2010:WorkflowViewState.IdRef="If_9">
+                <If.Then>
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each word to monitor" sap:VirtualizedContainerService.HintSize="689,1028" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[wordsToMonitorSplitArray]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="For Each word to monitor Body" sap:VirtualizedContainerService.HintSize="653,894" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Boolean" Name="containsWord" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="611,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                             <Assign.To>
-                              <OutArgument x:TypeArguments="x:Object">[row.Item("Contains Monitored Word")]</OutArgument>
+                              <OutArgument x:TypeArguments="x:Boolean">[containsWord]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="x:Object">["False"]</InArgument>
+                              <InArgument x:TypeArguments="x:Boolean">False</InArgument>
                             </Assign.Value>
                           </Assign>
-                        </If.Else>
-                      </If>
-                    </Sequence>
-                  </ActivityAction>
-                </ui:ForEach.Body>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:ForEach>
+                          <If Condition="[row.Item(&quot;text&quot;).ToString.Contains(item.Trim) Or row.Item(&quot;Image Description&quot;).ToString.Contains(item.Trim)]" DisplayName="If contains word set true" sap:VirtualizedContainerService.HintSize="611,300" sap2010:WorkflowViewState.IdRef="If_2">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[containsWord]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                          <If Condition="[containsWord]" DisplayName="If contains word set column" sap:VirtualizedContainerService.HintSize="611,362" sap2010:WorkflowViewState.IdRef="If_3">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="304,214" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Object">[row.Item("Contains Monitored Word")]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Object">["True"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:Break sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Break_1" />
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[row.Item("Contains Monitored Word")]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">["False"]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ForEach>
+                </If.Then>
+              </If>
             </Sequence>
           </Sequence>
         </ActivityAction>
@@ -460,7 +472,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[jsonDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[defaultSaveLocation+jsonFile+ &quot;-Analysis.csv&quot;]" sap:VirtualizedContainerService.HintSize="484,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2">
+    <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[jsonDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[defaultSaveLocation+jsonFile+ &quot;-Analysis.csv&quot;]" sap:VirtualizedContainerService.HintSize="968,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -468,7 +480,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteCsvFile>
-    <If Condition="[String.IsNullOrWhiteSpace(emailAddressTo)]" DisplayName="Send email if specified" sap:VirtualizedContainerService.HintSize="484,293" sap2010:WorkflowViewState.IdRef="If_8">
+    <If Condition="[String.IsNullOrWhiteSpace(emailAddressTo)]" DisplayName="Send email if specified" sap:VirtualizedContainerService.HintSize="968,293" sap2010:WorkflowViewState.IdRef="If_8">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
