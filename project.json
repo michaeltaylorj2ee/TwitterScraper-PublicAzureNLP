@@ -1,6 +1,6 @@
 {
   "name": "TwitterScraper",
-  "description": "Blank Process",
+  "description": "Public Twitter Scraper Bot",
   "main": "Main.xaml",
   "dependencies": {
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
@@ -9,6 +9,7 @@
     "UiPath.Form.Activities": "[1.0.0]",
     "UiPath.Mail.Activities": "[1.7.2]",
     "UiPath.MicrosoftVision.Activities": "[2.2.0]",
+    "UiPath.MLServices.Activities": "[1.1.1]",
     "UiPath.System.Activities": "[19.10.1]",
     "UiPath.UIAutomation.Activities": "[19.11.0]",
     "UiPath.WebAPI.Activities": "[1.4.4]",

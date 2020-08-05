@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1461,5154" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1334,3803" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:um="clr-namespace:UiPath.MLServices;assembly=UiPath.MLServices" xmlns:uma="clr-namespace:UiPath.MLServices.Activities;assembly=UiPath.MLServices.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="31">
+    <scg:List x:TypeArguments="x:String" Capacity="64">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -32,10 +32,12 @@
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Cognitive.Text.Analysis</x:String>
       <x:String>System.Globalization</x:String>
+      <x:String>UiPath.MLServices</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="24">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="25">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -60,21 +62,21 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Cognitive</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.MLServices</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1010,4949" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="793,3598" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="username" />
       <Variable x:TypeArguments="x:String" Name="jsonFile" />
       <Variable x:TypeArguments="sd:DataTable" Name="jsonDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="tweetsDt" />
       <Variable x:TypeArguments="s:String[]" Name="wordsToMonitorSplitArray" />
       <Variable x:TypeArguments="scg:IDictionary(x:String, x:String)" Name="imageDescriptionDictionary" />
       <Variable x:TypeArguments="njl:JObject" Name="formFieldJsonObject" />
       <Variable x:TypeArguments="x:String" Name="startingDateRange" />
       <Variable x:TypeArguments="x:String" Name="endingDateRange" />
       <Variable x:TypeArguments="x:String" Name="emailAddressTo" />
-      <Variable x:TypeArguments="x:String" Default="3237f074b4d94390a075b1bd3c624dee" Name="azureTextAnalyticsKey" />
+      <Variable x:TypeArguments="x:String" Name="azureTextAnalyticsKey" />
       <Variable x:TypeArguments="x:String" Name="keywords" />
       <Variable x:TypeArguments="x:String" Name="defaultSaveLocation" />
       <Variable x:TypeArguments="x:String" Name="azureComputerVisionKey" />
@@ -87,11 +89,12 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="968,515" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Prereq: https://github.com/taspinar/twitterscraper&#xA;&#xA;// Install python (Ensure python is included in system path)&#xA;&#xA;// You may need to change your query.py file for the Twitter Scraper to work.&#xA;&#xA;//https://github.com/taspinar/twitterscraper/issues/296#issuecomment-637637929&#xA;&#xA;// then run this command&#xA;&#xA;// pip install twitterscraper&#xA;&#xA;// Edit Config.csv file to setup your Azure Computer Vision URL / Key, Azure Text Analytics URL/Key, and Default File Save Location&#xA;&#xA;// Documentation for text analytics https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
-    <Sequence DisplayName="Read Config File" sap:VirtualizedContainerService.HintSize="968,506" sap2010:WorkflowViewState.IdRef="Sequence_35">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="751,515" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Prereq: https://github.com/taspinar/twitterscraper&#xA;&#xA;// Install python (Ensure python is included in system path)&#xA;&#xA;// You may need to change your query.py file for the Twitter Scraper to work.&#xA;&#xA;//https://github.com/taspinar/twitterscraper/issues/296#issuecomment-637637929&#xA;&#xA;// then run this command&#xA;&#xA;// pip install twitterscraper&#xA;&#xA;// Edit Config.csv file to setup your Azure Computer Vision URL / Key, Azure Text Analytics URL/Key, and Default File Save Location&#xA;&#xA;// Documentation for text analytics https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
+    <Sequence DisplayName="Read Config File" sap:VirtualizedContainerService.HintSize="751,66" sap2010:WorkflowViewState.IdRef="Sequence_35">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[config]" Delimitator="Comma" DisplayName="Read CSV" FilePath="Config.csv" sap:VirtualizedContainerService.HintSize="338,152" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
@@ -142,7 +145,7 @@
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
     </Sequence>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetUserInput workflow" sap:VirtualizedContainerService.HintSize="968,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="HelperFunctions/GetUserInput.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetUserInput workflow" sap:VirtualizedContainerService.HintSize="751,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="HelperFunctions/GetUserInput.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InOutArgument x:TypeArguments="njl:JObject" x:Key="formFieldJsonObject">[formFieldJsonObject]</InOutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="emailAddressTo">[emailAddressTo]</OutArgument>
@@ -153,7 +156,7 @@
         <OutArgument x:TypeArguments="s:String[]" x:Key="wordsToMonitorSplitArray">[wordsToMonitorSplitArray]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke TwitterScrape workflow" sap:VirtualizedContainerService.HintSize="968,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="HelperFunctions/TwitterScrape.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke TwitterScrape workflow" sap:VirtualizedContainerService.HintSize="751,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="HelperFunctions/TwitterScrape.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="username">[username]</InArgument>
         <InArgument x:TypeArguments="njl:JObject" x:Key="formFieldJsonObject">[formFieldJsonObject]</InArgument>
@@ -164,13 +167,13 @@
         <InArgument x:TypeArguments="x:String" x:Key="resultsSaveLocation">[defaultSaveLocation]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Sequence DisplayName="Deserialize JSON and Save to CSV" sap:VirtualizedContainerService.HintSize="968,1217" sap2010:WorkflowViewState.IdRef="Sequence_15">
+    <Sequence DisplayName="Deserialize JSON and Save to CSV" sap:VirtualizedContainerService.HintSize="751,66" sap2010:WorkflowViewState.IdRef="Sequence_15">
       <Sequence.Variables>
         <Variable x:TypeArguments="njl:JArray" Name="jsonArray" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -229,24 +232,20 @@
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[jsonDT]" DisplayName="For Each Tweet, Check Sentiment and Monitored Words" sap:VirtualizedContainerService.HintSize="968,1720" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[jsonDT]" DisplayName="For Each Tweet, Check Sentiment and Monitored Words" sap:VirtualizedContainerService.HintSize="751,1960" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="918,1572" sap2010:WorkflowViewState.IdRef="Sequence_4">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="scg:KeyValuePair(x:Double, x:String)" Name="sentiment" />
-            </Sequence.Variables>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="701,1812" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence sap:VirtualizedContainerService.HintSize="876,1480" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="For Each Tweet Sequence" sap:VirtualizedContainerService.HintSize="659,1720" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="newError" />
                 <Variable x:TypeArguments="x:Boolean" Name="keyExists" />
                 <Variable x:TypeArguments="x:String" Name="imageDescr" />
                 <Variable x:TypeArguments="scg:List(x:String)" Name="splitString" />
@@ -254,6 +253,9 @@
                 <Variable x:TypeArguments="x:String" Name="result" />
                 <Variable x:TypeArguments="njl:JArray" Name="jsonArrayOfDocuments" />
                 <Variable x:TypeArguments="njl:JObject" Name="jsonObject" />
+                <Variable x:TypeArguments="x:String" Name="aiFabricJson" />
+                <Variable x:TypeArguments="njl:JObject" Name="aiFabricJsonObject" />
+                <Variable x:TypeArguments="x:String" Name="cleanedText" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -261,79 +263,178 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Get Azure Sentiment" sap:VirtualizedContainerService.HintSize="834,66" sap2010:WorkflowViewState.IdRef="Sequence_34">
+              <Sequence DisplayName="Ai Fabric Sentiment" sap:VirtualizedContainerService.HintSize="617,1340" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="575,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[cleanedText]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(row.Item("text").ToString,"[\n]","")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="575,1148" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <TryCatch.Try>
+                    <If Condition="[cleanedText.Trim.Length &gt; 1]" sap:VirtualizedContainerService.HintSize="537,921" sap2010:WorkflowViewState.IdRef="If_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="392,773" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uma:MLSkills ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Name="{x:Null}" NumberOfRetries="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SelectedMLSkill="{x:Reference __ReferenceID0}" StatusCode="{x:Null}" TimeOutMs="{x:Null}" DisplayName="MLSkill" sap:VirtualizedContainerService.HintSize="350,350" sap2010:WorkflowViewState.IdRef="MLSkills_1" Item="[cleanedText]" JsonResponse="[aiFabricJson]" NextPageNum="2" RefreshList="False" TotalCount="15">
+                            <uma:MLSkills.MLSkillList>
+                              <scg:List x:TypeArguments="um:MLSkill" Capacity="16">
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/customeremailclassification" Description="This model will classify customer complaint emails." Id="7883f6cd-1c7c-4854-8ed4-6395c4335b18" InputDescription="Text to be classified as String: 'I loved this movie.'" InputType="JSON" Name="CustomerEmailClassification" OutputDescription="JSON with pedicted class name, associated confidence on that class prediction (between 0-1).  For example: {\&quot;prediction\&quot;: \&quot;Positive\&quot;, \&quot;confidence\&quot;: 0.9422031841278076,}" ProjectId="f0011c2a-ea6a-40cd-a6cf-911d560cbc0a" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/demo" Description="" Id="ccf04611-4983-45fc-aa21-7edc9c25a88d" InputDescription="Text to be classified as String: 'I loved this movie.'" InputType="JSON" Name="Demo" OutputDescription="JSON with pedicted class name, associated confidence on that class prediction (between 0-1).  For example: {\&quot;prediction\&quot;: \&quot;Positive\&quot;, \&quot;confidence\&quot;: 0.9422031841278076,}" ProjectId="f0011c2a-ea6a-40cd-a6cf-911d560cbc0a" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/demodeployment" Description="" Id="524866e5-eb50-4128-97cf-6144e7b5f1e2" InputDescription="Text to be classified as String: 'I loved this movie.'" InputType="JSON" Name="DemoDeployment" OutputDescription="JSON with pedicted class name, associated confidence on that class prediction (between 0-1).  For example: {\&quot;prediction\&quot;: \&quot;Positive\&quot;, \&quot;confidence\&quot;: 0.9422031841278076,}" ProjectId="f0011c2a-ea6a-40cd-a6cf-911d560cbc0a" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/email-classification" Description="This model classifies customer request emails." Id="44dac6fb-5fbb-472a-9e7d-aac5cae388f8" InputDescription="Please provide the email body as input." InputType="JSON" Name="Email Classification" OutputDescription="The output will be the index of the classification for the string array: {&quot;Bank account or service&quot;, &quot;Consumer Loan&quot;, &quot;Credit card&quot;, &quot;Credit reporting&quot;, &quot;Debt collection&quot;, &quot;Money transfers&quot;, &quot;Mortgage&quot;, &quot;Other financial service&quot;,  &quot;Payday loan&quot;, &quot;Prepaid card&quot;,  &quot;Student loan&quot;}. Additionally, the output will contain the confidence. " ProjectId="38772DAD-0F13-4AB9-97C2-9F21A407E4BE" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/englishtofrench" Description="Translates text from English to French." Id="3418765d-277e-468e-ac59-f217e4698a2c" InputDescription="Text to be translated. &#xA;For example: &quot;Hello world!&quot;" InputType="JSON" Name="EnglishToFrench" OutputDescription="Translated text in French Language." ProjectId="d536addb-151a-4c89-809c-add91577e447" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/englishtogerman" Description="Translates text from English to German." Id="85650007-4139-4d8d-aa81-0ab3e0aa9e67" InputDescription="Text to be translated. &#xA;For example: &quot;Hello world!&quot;" InputType="JSON" Name="EnglishToGerman" OutputDescription="Translated text in German Language." ProjectId="d536addb-151a-4c89-809c-add91577e447" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/englishtorussian" Description="Translates text from English to Russian." Id="920f3e61-28d1-478a-afdc-30b11965423c" InputDescription="Text to be translated. &#xA;For example: &quot;Hello world!&quot;" InputType="JSON" Name="EnglishToRussian" OutputDescription="Translated text in Russian Language." ProjectId="d536addb-151a-4c89-809c-add91577e447" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/inventory-management" Description="" Id="629f48c5-3d18-44ee-bc96-9a2edbf2f45f" InputDescription="List of past 12 periods of sales. Example: “[1,2,3,4,5,6,7,8,9,10,11,12]”" InputType="JSON" Name="Inventory Management" OutputDescription="{}{“prediction”: &lt;Predicted Sales&gt;}" ProjectId="38772DAD-0F13-4AB9-97C2-9F21A407E4BE" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/inventorymanagement" Description="" Id="173b4e7d-b4af-42d3-8a46-1d7606819d94" InputDescription="List of past 12 periods of sales. Example: “[1,2,3,4,5,6,7,8,9,10,11,12]”" InputType="JSON" Name="InventoryManagement" OutputDescription="{}{“prediction”: &lt;Predicted Sales&gt;}" ProjectId="acae1656-e945-4ccb-bcbe-f8f3cdce231a" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/languagedetectionmodel" Description="Detects language from text." Id="332dc042-cede-4990-a54f-db153707cbb4" InputDescription="Text to be analyzed.&#xA;For example:&#xA;&quot;Necesito ayuda con mi pedido.&quot;" InputType="JSON" Name="LanguageDetectionModel" OutputDescription="JSON with prediction of the language.&#xA;Output will be a prediction for the input's language along with a confidence of that prediction.&#xA;{&#xA;    &quot;language&quot;:&quot;Spanish&quot;, &#xA;    &quot;confidence&quot;: 1.0&#xA;}" ProjectId="d536addb-151a-4c89-809c-add91577e447" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/moviereviewsentimentanalysis" Description="" Id="6eb6d03d-6d38-486a-a660-ae6b58254a46" InputDescription="Text to be analyzed. For example: &quot;I am dissatisfied with this service.&quot;" InputType="JSON" Name="MovieReviewSentimentAnalysis" OutputDescription="JSON with class name and confidence on that class prediction (between 0-1).&#xA;Class prediction can be one of: &quot;Very Negative&quot;, &quot;Negative&quot;, &quot;Neutral&quot;, &quot;Positive&quot;, &quot;Very Positive&quot;&#xA;For example:  '{&quot;sentiment&quot;: &quot;Very Negative&quot;, &quot;confidence&quot;: 0.97}'" ProjectId="1fc3e219-dbff-423a-a249-e4e9616ed2ed" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/receiptanomalydetection" Description="" Id="866cdc41-16f2-4ed2-8cba-b75765096fe6" InputDescription="Please input the text from the receipt." InputType="JSON" Name="ReceiptAnomalyDetection" OutputDescription="{}{prediction: &lt;True or False&gt;,&quot;confidence&quot;:&lt;confidenceScore&gt;}" ProjectId="bd4ced94-9dde-4ad4-affd-46dd853e2f16" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/resumematching" Description="This model matches a resume to a job." Id="234fc840-5b62-4f14-adef-ba1f7061573b" InputDescription="Text to be classified as String: 'I loved this movie.'" InputType="JSON" Name="ResumeMatching" OutputDescription="JSON with pedicted class name, associated confidence on that class prediction (between 0-1).  For example: {\&quot;prediction\&quot;: \&quot;Positive\&quot;, \&quot;confidence\&quot;: 0.9422031841278076,}" ProjectId="06f5032e-0a0e-4a47-b6eb-87efa782e951" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill x:Name="__ReferenceID0" AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/sentimentanalysis" Description="This model will predict sentiment in text." Id="ed511ab8-8269-4b32-abba-153187dca69a" InputDescription="Text to be analyzed. For example: &quot;I am dissatisfied with this service.&quot;" InputType="JSON" Name="SentimentAnalysis" OutputDescription="JSON with class name and confidence on that class prediction (between 0-1).&#xA;Class prediction can be one of: &quot;Very Negative&quot;, &quot;Negative&quot;, &quot;Neutral&quot;, &quot;Positive&quot;, &quot;Very Positive&quot;&#xA;For example:  '{&quot;sentiment&quot;: &quot;Very Negative&quot;, &quot;confidence&quot;: 0.97}'" ProjectId="45a9f525-0241-4cfe-8471-4495a07a2e25" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                                <um:MLSkill AccessUri="https://aifabric-staging.uipath.com/mlskills/host/cf7ae654-02bd-412b-b0cd-a2738b31a9c3/stagingconsumercomplaints" Description="" Id="3bb9f3fc-b10e-400a-8d88-26d464a8be6a" InputDescription="Text to be classified as String: 'I loved this movie.'" InputType="JSON" Name="StagingConsumerComplaints" OutputDescription="JSON with pedicted class name, associated confidence on that class prediction (between 0-1).  For example: {\&quot;prediction\&quot;: \&quot;Positive\&quot;, \&quot;confidence\&quot;: 0.9422031841278076,}" ProjectId="f0011c2a-ea6a-40cd-a6cf-911d560cbc0a" TenantId="cf7ae654-02bd-412b-b0cd-a2738b31a9c3" />
+                              </scg:List>
+                            </uma:MLSkills.MLSkillList>
+                          </uma:MLSkills>
+                          <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="350,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_6" JsonObject="[aiFabricJsonObject]" JsonString="[aiFabricJson]" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="350,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[aiFabricJsonObject(&quot;sentiment&quot;).ToString]" />
+                          <Assign sap:VirtualizedContainerService.HintSize="350,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[row.Item("Sentiment")]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[aiFabricJsonObject("sentiment").ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="541,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+              </Sequence>
+              <ui:CommentOut DisplayName="Comment Out Azure Sentiment" sap:VirtualizedContainerService.HintSize="617,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,1438" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="Get Azure Sentiment" sap:VirtualizedContainerService.HintSize="454,1346" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:Comment sap:VirtualizedContainerService.HintSize="412,112" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Split String workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="HelperFunctions/Split String.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="string_IN">[row.Item("text").ToString]</InArgument>
+                          <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="stringList_OUT">[splitString]</OutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Build JSON Body workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="HelperFunctions/Build JSON Body.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="scg:List(x:String)" x:Key="string_IN">[splitString]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="JSON_OUT">[json]</OutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" Body="[json]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EndPoint="[azureTextAnalyticsURL]" sap:VirtualizedContainerService.HintSize="412,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" Result="[result]" TimeoutMS="6000">
+                        <ui:HttpClient.Attachments>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                        </ui:HttpClient.Attachments>
+                        <ui:HttpClient.Cookies>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                        </ui:HttpClient.Cookies>
+                        <ui:HttpClient.Headers>
+                          <InArgument x:TypeArguments="x:String" x:Key="Ocp-Apim-Subscription-Key">[azureTextAnalyticsKey]</InArgument>
+                        </ui:HttpClient.Headers>
+                        <ui:HttpClient.Parameters>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                        </ui:HttpClient.Parameters>
+                        <ui:HttpClient.UrlSegments>
+                          <InArgument x:TypeArguments="x:String" x:Key="model-version">3</InArgument>
+                        </ui:HttpClient.UrlSegments>
+                      </ui:HttpClient>
+                      <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="412,59" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[jsonObject]" JsonString="[result]" />
+                      <ui:DeserializeJsonArray DisplayName="Deserialize JSON Array" sap:VirtualizedContainerService.HintSize="412,59" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_3" JsonArray="[jsonArrayOfDocuments]" JsonString="[jsonObject.SelectToken(&quot;documents&quot;).ToString]" />
+                      <ui:WriteTextFile DisplayName="Write Text File" FileName="[&quot;httpResult&quot;+ &quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="412,132" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jsonObject.SelectToken(&quot;documents&quot;).ToString]" />
+                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Go through each Token of JSON Documents" sap:VirtualizedContainerService.HintSize="412,416" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[jsonArrayOfDocuments]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="njl:JObject">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="njl:JObject" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[row.Item("Sentiment")]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">[item.SelectToken("sentiment").ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[item.SelectToken(&quot;sentiment&quot;).ToString]" />
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:ForEach>
+                    </Sequence>
+                  </Sequence>
+                </ui:CommentOut.Body>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:Comment sap:VirtualizedContainerService.HintSize="412,112" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment" />
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Split String workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="HelperFunctions/Split String.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="string_IN">[row.Item("text").ToString]</InArgument>
-                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="stringList_OUT">[splitString]</OutArgument>
-                  </ui:InvokeWorkflowFile.Arguments>
-                </ui:InvokeWorkflowFile>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Build JSON Body workflow" sap:VirtualizedContainerService.HintSize="412,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="HelperFunctions/Build JSON Body.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="scg:List(x:String)" x:Key="string_IN">[splitString]</InArgument>
-                    <OutArgument x:TypeArguments="x:String" x:Key="JSON_OUT">[json]</OutArgument>
-                  </ui:InvokeWorkflowFile.Arguments>
-                </ui:InvokeWorkflowFile>
-                <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" Body="[json]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EndPoint="[azureTextAnalyticsURL]" sap:VirtualizedContainerService.HintSize="412,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" Result="[result]" TimeoutMS="6000">
-                  <ui:HttpClient.Attachments>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.Attachments>
-                  <ui:HttpClient.Cookies>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.Cookies>
-                  <ui:HttpClient.Headers>
-                    <InArgument x:TypeArguments="x:String" x:Key="Ocp-Apim-Subscription-Key">[azureTextAnalyticsKey]</InArgument>
-                  </ui:HttpClient.Headers>
-                  <ui:HttpClient.Parameters>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.Parameters>
-                  <ui:HttpClient.UrlSegments>
-                    <InArgument x:TypeArguments="x:String" x:Key="model-version">3</InArgument>
-                  </ui:HttpClient.UrlSegments>
-                </ui:HttpClient>
-                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="412,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[jsonObject]" JsonString="[result]" />
-                <ui:DeserializeJsonArray DisplayName="Deserialize JSON Array" sap:VirtualizedContainerService.HintSize="412,60" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_3" JsonArray="[jsonArrayOfDocuments]" JsonString="[jsonObject.SelectToken(&quot;documents&quot;).ToString]" />
-                <ui:WriteTextFile DisplayName="Write Text File" FileName="[&quot;httpResult&quot;+ &quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="412,132" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jsonObject.SelectToken(&quot;documents&quot;).ToString]" />
-                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Go through each Token of JSON Documents" sap:VirtualizedContainerService.HintSize="412,417" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[jsonArrayOfDocuments]">
-                  <ui:ForEach.Body>
-                    <ActivityAction x:TypeArguments="njl:JObject">
-                      <ActivityAction.Argument>
-                        <DelegateInArgument x:TypeArguments="njl:JObject" Name="item" />
-                      </ActivityAction.Argument>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_33">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_18">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[row.Item("Sentiment")]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">[item.SelectToken("sentiment").ToString]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[item.SelectToken(&quot;sentiment&quot;).ToString]" />
-                      </Sequence>
-                    </ActivityAction>
-                  </ui:ForEach.Body>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:ForEach>
-              </Sequence>
-              <Sequence DisplayName="Set Description of Image" sap:VirtualizedContainerService.HintSize="834,66" sap2010:WorkflowViewState.IdRef="Sequence_31">
+              </ui:CommentOut>
+              <Sequence DisplayName="Set Description of Image" sap:VirtualizedContainerService.HintSize="617,66" sap2010:WorkflowViewState.IdRef="Sequence_31">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -362,7 +463,13 @@
                   </If.Then>
                 </If>
               </Sequence>
-              <If Condition="[wordsToMonitorSplitArray.Count &gt; 0]" DisplayName="Search for word, if words provided" sap:VirtualizedContainerService.HintSize="834,1176" sap2010:WorkflowViewState.IdRef="If_9">
+              <If Condition="[wordsToMonitorSplitArray.Count &gt; 0]" DisplayName="Search for word, if words provided" sap:VirtualizedContainerService.HintSize="617,51" sap2010:WorkflowViewState.IdRef="If_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
                   <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each word to monitor" sap:VirtualizedContainerService.HintSize="689,1028" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[wordsToMonitorSplitArray]">
                     <ui:ForEach.Body>
@@ -472,7 +579,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[jsonDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[defaultSaveLocation+jsonFile+ &quot;-Analysis.csv&quot;]" sap:VirtualizedContainerService.HintSize="968,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2">
+    <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[jsonDT]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[defaultSaveLocation+jsonFile+ &quot;-Analysis.csv&quot;]" sap:VirtualizedContainerService.HintSize="751,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -480,7 +587,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteCsvFile>
-    <If Condition="[String.IsNullOrWhiteSpace(emailAddressTo)]" DisplayName="Send email if specified" sap:VirtualizedContainerService.HintSize="968,293" sap2010:WorkflowViewState.IdRef="If_8">
+    <If Condition="[String.IsNullOrWhiteSpace(emailAddressTo)]" DisplayName="Send email if specified" sap:VirtualizedContainerService.HintSize="751,293" sap2010:WorkflowViewState.IdRef="If_8">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
